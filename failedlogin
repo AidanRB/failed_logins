@@ -3,7 +3,7 @@
 import requests, json, subprocess, sys, os, datetime, pwd, urllib.parse
 
 # Set stuff up
-url = 'https://discordapp.com/api/webhooks/761765537381351444/0N65QqVbqprslWQDE4VNFh3f1jmVSATJP8ml2yhw-BIXR8F8oA48BKkGqpxBgzMipYQM'
+url = open('/home/pi/fail/webhook', 'r').read()[:-1]
 n = int(open('/home/pi/fail/failedlogins', 'r').read())
 headers = {'content-type': 'application/json'}
 message = {}
