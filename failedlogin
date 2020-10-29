@@ -4,7 +4,7 @@ import requests, json, subprocess, sys, os, datetime, pwd, urllib.parse
 
 # Set stuff up
 url = 'https://discordapp.com/api/webhooks/761765537381351444/0N65QqVbqprslWQDE4VNFh3f1jmVSATJP8ml2yhw-BIXR8F8oA48BKkGqpxBgzMipYQM'
-n = int(open('/home/pi/failedlogins', 'r').read())
+n = int(open('/home/pi/fail/failedlogins', 'r').read())
 headers = {'content-type': 'application/json'}
 message = {}
 message['embeds'] = [{}]
@@ -12,7 +12,7 @@ message['embeds'][0]['color'] = 0
 
 # Increment our main counter
 n += 1
-with open('/home/pi/failedlogins', 'w') as f:
+with open('/home/pi/fail/failedlogins', 'w') as f:
     f.write(str(n))
 
 # Get the relevant line of the auth log
