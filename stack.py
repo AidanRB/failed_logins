@@ -1,0 +1,64 @@
+#!/usr/bin/python3
+
+import asyncio
+import uvloop
+import json
+
+from sanic import Sanic
+from sanic import response
+from sanic.response import file
+from sanic.websocket import ConnectionClosed
+
+app = Sanic(__name__)
+
+app.ws_clients = set()
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+
+@app.route('/')
+async def index(request):
+    return await file('index.html')
+
+@app.route('/style.css')
+async def style(request):
+    return await file('style.css')
+
+@app.route('/script.js')
+async def script(request):
+    return await file('script.js')
+
+@app.route('/attempt/<ip:string>/<username:string>/<password:string>', methods=["GET", "POST"])
+async def message_inbound(request, ip, username, password):
+    if (request.ip == "127.0.0.1"):
+        data = {}
+        data['ip'] = ip
+        data['username'] = username
+        data['password'] = password
+        await broadcast(json.dumps(data))
+        return response.json({"status": "OK"})
+    else:
+        abort(404)
+
+# TODO: Rewrite this with an easier to understand for loop that actually removes disconnected clients from ws_clients
+async def broadcast(message):
+    broadcasts = [ws.send(message) for ws in app.ws_clients]
+    for result in asyncio.as_completed(broadcasts):
+        try:
+            await result
+        except ConnectionClosed:
+            print("ConnectionClosed")
+        except Exception as ex:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(ex).__name__, ex.args)
+            print(message)
+
+@app.websocket("/ws")
+async def websocket(request, ws):
+    app.ws_clients.add(ws)
+    await ws.send("Connected.")
+    print(f'{len(app.ws_clients)} clients')
+    while True:
+        data = await ws.recv()
+        print('Received: ' + data)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80, workers=1, debug=False)

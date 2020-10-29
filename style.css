@@ -1,0 +1,163 @@
+/* GENERAL */
+
+body {
+    background: black;
+    font-family: montserrat, sans;
+    color: white;
+    font-weight: 500;
+}
+
+
+/* KEYS */
+
+.key {
+    width: 25px;
+    height: 20px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid white;
+    margin: 5px;
+    transition: .75s;
+}
+
+.space {
+    width: 570px;
+}
+
+.num0 {
+    width: 102px;
+}
+
+.key:hover,
+.pressed {
+    transition: none;
+    background: white;
+    color: black;
+    /* box-shadow: inset 0 -31px 0 0 white; */
+}
+
+.uppercase {
+    background: #0f0;
+    /* box-shadow: inset 0 31px 0 0 white; */
+}
+
+
+/* KEYBOARD */
+
+.keyboard,
+.logcontcont {
+    width: 1332px;
+    margin: auto;
+}
+
+.keyboard-left {
+    float: left;
+}
+
+.keyboard-right {
+    padding-top: 72px;
+}
+
+.row {
+    display: flex;
+}
+
+.keyboard-left .row:nth-child(2) {
+    margin-left: 100px;
+}
+
+.keyboard-left .row:nth-child(3) {
+    margin-left: 133px;
+}
+
+.keyboard-left .row:nth-child(4) {
+    margin-left: 166px;
+}
+
+.keyboard-left .row:nth-child(5) {
+    margin-left: 200px;
+}
+
+
+/* LOG */
+
+.logcont {
+    width: 612px;
+    margin-left: 205px;
+}
+
+#log {
+    margin: auto;
+}
+
+#log>tbody>tr>td:nth-child(4) {
+    cursor: pointer;
+}
+
+#log>tbody>tr {
+    /* transition: all .2s; */
+}
+
+#log>tbody>tr>td {
+    padding: 5px 15px;
+}
+
+#log>tbody>tr:nth-child(1) {
+    color: #fff;
+}
+
+#log>tbody>tr:nth-child(2) {
+    color: #eee;
+}
+
+#log>tbody>tr:nth-child(3) {
+    color: #ddd;
+}
+
+#log>tbody>tr:nth-child(4) {
+    color: #ccc;
+}
+
+#log>tbody>tr:nth-child(5) {
+    color: #bbb;
+}
+
+#log>tbody>tr:nth-child(6) {
+    color: #aaa;
+}
+
+#log>tbody>tr:nth-child(7) {
+    color: #999;
+}
+
+#log>tbody>tr:nth-child(8) {
+    color: #888;
+}
+
+#log>tbody>tr:nth-child(9) {
+    color: #777;
+}
+
+#log>tbody>tr:nth-child(10) {
+    color: #666;
+}
+
+#log>tbody>tr:nth-child(11) {
+    color: #555;
+}
+
+#log>tbody>tr:nth-child(12) {
+    color: #444;
+}
+
+#log>tbody>tr:nth-child(13) {
+    color: #333;
+}
+
+#log>tbody>tr:nth-child(14) {
+    color: #222;
+}
+
+#log>tbody>tr:nth-child(15) {
+    color: #111;
+}
